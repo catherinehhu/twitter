@@ -22,7 +22,7 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src="/twitter.gif" width="250"/>
 # Twitter - Part I
 
 This is a basic twitter app to read your tweets.
@@ -48,4 +48,4 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src="/twitter.gif" width="250"/>
+<img src="/twitter_old.gif" width="250"/>
