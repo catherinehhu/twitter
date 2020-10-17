@@ -13,10 +13,15 @@ class HomeTableViewController: UITableViewController {
     var tweetArray = [NSDictionary]()
     var numberOfTweets: Int!
     
-
+    let myRefreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTweet()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func loadTweet(){
@@ -27,15 +32,15 @@ class HomeTableViewController: UITableViewController {
             for tweet in tweets{
                 self.tweetArray.append(tweet)
             }
-            
-        
+
             self.tableView.reloadData()
+            self.myRefreshControl.endRefreshing()
         }, failure: { (Error) in
             print("Could not retrieve tweets!")
         })
     }
 
-        
+
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
         self.dismiss(animated: true, completion: nil)
@@ -54,6 +59,11 @@ class HomeTableViewController: UITableViewController {
         if let imageData = data{
             cell.profileImageView.image = UIImage(data:imageData)
         }
+        
+        cell.setFavorite(isFavorited: tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        cell.setRetweeted(isRetweeted: tweetArray[indexPath.row]["retweeted"] as! Bool)
+        
         return cell
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
